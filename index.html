@@ -195,6 +195,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+            min-width: 160px;
             padding: 0 10px;
             position: relative;
         }
@@ -254,18 +255,48 @@
             .logo-container { width: 280px; }
             .main-nav { gap: 3rem; font-size: 1.35rem; }
             .game-row { flex-direction: column; }
-        }
-                transform: scale(0.5);
-                
-                /* 3. Anchor it to the top left so it stays aligned */
-                transform-origin: top left;
-                
-                /* 4. Remove the empty whitespace created at the bottom by shrinking */
-                margin-bottom: -150px;
-                
-                /* 5. Pull it slightly left to counteract padding if needed */
-                margin-left: -10px;
 
+            /* --- FIXED SIZE MOBILE BRACKET --- */
+            .bracket-wrapper {
+                /* Remove any overflow settings */
+                overflow-x: visible;
+                /* Reduce gap between columns to almost nothing */
+                gap: 2px; 
+            }
+
+            .round-column {
+                /* FORCE width to fit 3 columns on screen (33% each) */
+                min-width: 0 !important;
+                width: 33%;
+                flex: 1;
+                /* Reduce padding inside columns */
+                padding: 0 2px;
+            }
+
+            .bracket-match {
+                /* Make the boxes smaller */
+                padding: 5px 2px;
+                margin: 5px 0;
+                /* Thinner border */
+                border-width: 1px;
+                /* Smaller Font Size so text fits */
+                font-size: 0.65rem; 
+                line-height: 1.3;
+            }
+
+            .seed {
+                /* Smaller seed text */
+                font-size: 0.55rem;
+                margin-bottom: 1px;
+            }
+
+            .round-title {
+                /* Smaller titles (Quarterfinals, etc) */
+                font-size: 0.7rem;
+                margin-bottom: 10px;
+                border-width: 1px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -354,11 +385,11 @@ The questions below outline specifics for players and attendees.
         <div class="game-row">
             <div class="match-container">
                 <span class="court-tag">COURT 2</span>
-                <div class="teams">Team 1 v Team 2</div>
+                <div class="teams">Team 1 vs Team 2</div>
             </div>
             <div class="match-container">
                 <span class="court-tag">COURT 3</span>
-                <div class="teams">Team 3 v Team 4</div>
+                <div class="teams">Team 3 vs Team 4</div>
             </div>
         </div>
     </div>
@@ -369,11 +400,11 @@ The questions below outline specifics for players and attendees.
         <div class="game-row">
             <div class="match-container">
                 <span class="court-tag">COURT 2</span>
-                <div class="teams">Team 5 v Team 6</div>
+                <div class="teams">Team 5 vs Team 6</div>
             </div>
             <div class="match-container">
                 <span class="court-tag">COURT 3</span>
-                <div class="teams">Team 7 v Team 8</div>
+                <div class="teams">Team 7 vs Team 8</div>
             </div>
         </div>
     </div>
@@ -384,11 +415,11 @@ The questions below outline specifics for players and attendees.
         <div class="game-row">
             <div class="match-container">
                 <span class="court-tag">COURT 2</span>
-                <div class="teams">Team 1 v Team 3</div>
+                <div class="teams">Team 1 vs Team 3</div>
             </div>
             <div class="match-container">
                 <span class="court-tag">COURT 3</span>
-                <div class="teams">Team 2 v Team 4</div>
+                <div class="teams">Team 2 vs Team 4</div>
             </div>
         </div>
     </div>
@@ -399,11 +430,11 @@ The questions below outline specifics for players and attendees.
         <div class="game-row">
             <div class="match-container">
                 <span class="court-tag">COURT 2</span>
-                <div class="teams">Team 5 v Team 7</div>
+                <div class="teams">Team 5 vs Team 7</div>
             </div>
             <div class="match-container">
                 <span class="court-tag">COURT 3</span>
-                <div class="teams">Team 6 v Team 8</div>
+                <div class="teams">Team 6 vs Team 8</div>
             </div>
         </div>
     </div>
