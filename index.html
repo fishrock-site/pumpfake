@@ -255,6 +255,17 @@
             .main-nav { gap: 3rem; font-size: 1.35rem; }
             .game-row { flex-direction: column; }
         }
+                transform: scale(0.68);
+                
+                /* 3. Anchor it to the top left so it stays aligned */
+                transform-origin: top left;
+                
+                /* 4. Remove the empty whitespace created at the bottom by shrinking */
+                margin-bottom: -150px;
+                
+                /* 5. Pull it slightly left to counteract padding if needed */
+                margin-left: -10px;
+
     </style>
 </head>
 <body>
