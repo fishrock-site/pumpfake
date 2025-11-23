@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Classic</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://framerusercontent.com/images/PEd9teWLsnLO2dM8n95U11n4BhQ.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://framerusercontent.com/images/PEd9teWLsnLO2dM8n95U11n4BhQ.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Metadata -->
+    <meta name="title" content="Christmas Classic">
+    <meta name="description" content="Christmas Classic">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pumpfake.org/">
+    <meta property="og:title" content="Christmas Classic">
+    <meta property="og:description" content="Christmas Classic">
+    <meta property="og:image" content="https://framerusercontent.com/images/irGHaOLrQdI834TXKmyZBJOvTH4.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pumpfake.org/">
+    <meta property="twitter:title" content="Christmas Classic">
+    <meta property="twitter:description" content="Christmas Classic">
+    <meta property="twitter:image" content="https://framerusercontent.com/images/irGHaOLrQdI834TXKmyZBJOvTH4.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.8;
+            background: #2F6B3F;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        .logo-container {
+            width: 340px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .logo-container a {
+            display: block;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            flex-wrap: wrap;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: underline;
+            text-decoration-thickness: 1.5px;
+            text-underline-offset: 5px;
+            padding: 0.4rem 0;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            opacity: 0.85;
+        }
+
+        .nav-link.active {
+            font-weight: 600;
+            opacity: 1;
+            text-decoration-thickness: 2px;
+        }
+
+        .nav-link:hover { opacity: 1; }
+
+        .view-section {
+            display: none; 
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 3rem 2rem 10rem;
+            animation: fadeIn 0.7s ease forwards;
+        }
+
+        .view-section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .view-section p,
+        .view-section ul {
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-align: left; /* Aligned Left */
+            font-weight: 600;
+        }
+
+        .view-section a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        /* --- QA STYLES --- */
+        .qa-block {
+            margin-bottom: 2.5rem;
+            text-align: left; /* Aligned Left */
+        }
+
+        .qa-question {
+            margin-bottom: 0.3rem;
+            font-weight: 600; /* Bolder than the answer */
+            color: #ffffff;
+            font-size: 16px;
+            text-transform: none; /* Removed All Caps */
+        }
+
+        .qa-answer {
+            opacity: 0.85;
+            font-weight: 550; /* Slightly less bold */
+        }
+
+        /* --- SCHEDULE STYLES --- */
+        .schedule-block {
+            border: 3px solid white;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+
+        .time-header {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid white;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: left; /* Aligned Left */
+        }
+
+        .game-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .match-container {
+            flex: 1;
+            border: 2px solid rgba(255,255,255,0.7);
+            padding: 15px;
+            text-align: center; /* Match details still centered inside box for layout */
+            position: relative;
+        }
+
+        .court-tag {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+
+        .teams {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* --- BRACKET CSS --- */
+        .bracket-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            position: relative;
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+
+        .round-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            min-width: 160px;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .round-title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+
+        .bracket-match {
+            border: 3px solid white;
+            padding: 10px 5px;
+            background: transparent;
+            text-align: center;
+            position: relative;
+            margin: 10px 0;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .bracket-match span { display: block; }
+        .seed { 
+            font-size: 0.75rem; 
+            opacity: 0.9; 
+            margin-bottom: 2px; 
+            font-weight: 600;
+        }
+
+        .winner-box {
+            border: 3px double white;
+            font-weight: 700;
+        }
+
+        /* --- MAP CONTAINER --- */
+        .map-frame {
+            border: 3px solid white;
+            margin-bottom: 2rem;
+            line-height: 0;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 4rem 1rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            header { padding-top: 100px; }
+            .logo-container { width: 280px; }
+            .main-nav { gap: 3rem; font-size: 1.35rem; }
+            .game-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+<a href="https://pumpfake.org">
+        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="157" fill="none"><g fill="#fff" clip-path="url(#a)"><path d="M225.2 100.7c-.2-1.2 2.3-4 3.6-4.1 1.2-.2 2.7 3 2.7 4 0 1.1-6 1.6-6.3 0Zm7.7-4.8c-.4-.3-.6-1.4-1.2-1.3-2.4.6 1 7 2.2 7 1 0 2.6-4.9 2.4-5.4 0-.5-1.3.4-1.6.4-.3 0 .2-1.4-.2-1.6-.4-.1-1.1 1-1.6.9Zm-3.6 8c0-1.7 2-2.2 3-2.3 1.6 0 2.2 2.5 2.2 3.7 0 1.1-4 2.1-4.6 2.1-.6 0-.6-1.5-.6-3.5Zm-4 4.3c-2.8-.9-1.3-6.3-.7-6.7.3-.1 1 .5 1.7.8.8.4 1.7.4 2 .8.5.8.2 4 .2 4 0 .7-.4 1.9-3.3 1ZM99.4 143.8c2.8 0 4.2-1 4.6-1.5.5 0 .9 1.8.8 2.2 0 .5-1-.4-1.4-.3-.3.1-.5 1.6-.8 1.6-.2 0-.9-.4-1.2-.3-.3.1-.5 1.9-1 1.7-.5-.2-1.7-3.4-1-3.4Zm-.2-6c1.2 0 2.8-.1 3.4-1.7.7-1.7-2.2-4.7-3.5-4.7-1.3 0-4.6 2.2-2.3 3.1 2.2 1 1 3.3 2.4 3.3Zm-1.6-.3c0-.6-1-2.4-1.8-2.5-.7-.1-3.4 4.3-3.4 5.3s2.2 2.3 3.4 2.3c1.3 0 1.7-4.3 1.8-5Z"/><path d="M103.2 137c-.2 1.1-4.1 1.5-4.6 1.8-.4.2-1.2 3.3-.4 4 1 1 4-.2 5.3-1 1.4-.7 0-6-.3-4.8Zm-11.6-17.4c.7-.9 0-3.3-.5-3.5-.6-.2-4.7 1-6 2.4-1.4 2 1.7 4.2 2.6 4.3 1 0 3-2.2 4-3.2Zm.4-4c0-.4 1.1-1.6 2.7-1.5 1.5 0 2.4 3.4 2 4.3-.5.8-3.2 1-3.7.5-.6-.5-1-3-1-3.4Zm-3.3 7.7c2.6-3.4 6.5-4.4 7.6-3.7 1 .5-.3 4.7-2.1 5.3-2.5.8-6.2-.7-5.5-1.7ZM242 114c-20 47.9-42-1.5-19.1-11.4.3-.1.4-1.2.9-2.3.4-.9 1-1.2 1.4-1.6.3-.3.3-.7 0-1-5-3.5-23.8 9.5-16 31.7 8 22.4 35 4.4 38-14.2 0-.1-.1-.3-.3-.2-.5.4-1.3 1-1.6.8-.4-.2.1-1.6-.3-1.7-.5-.2-1.3 1.1-1.8 1-.3-.2-.6-.7-.8-1.1 0-.2-.4-.2-.4 0Z"/><path d="m204 97.6-3.4-3c-.2-.1-.6 0-.6.2-10.2 52.6 6.3 39.4 8.7 36.7.2-.2.1-.5 0-.7-1-1.2-1.5-6-2-5.1-7.9 12.3-4.3-11.6-2-26.2 0-.7-.1-1.4-.7-1.9ZM177 109c-.3.7-2.1.7-3.2.5-.2 0-.4.2-.5.4-6.6 20.6-34.9-.2-31 26.4.2 1.4 2.4-3 4.3-4.3.3-.2.5-.6.5-1-1.7-9.9 24 1.2 30.6-17.9v-.7c0-1.7-.1-4.3-.6-3.4Zm-73 27.6c0-1.8-2-4.6-2-5.3 0-.6 1.7-2.9 2.2-2.9.5 0 2 5 2 5.5s-2.3 4.4-2.3 2.7Zm-14.7-10.7c-.4 5 1 13.4 2.6 12.6 1.4-.6 1.4-2 2.7-3.7.3-.4.4-.9.3-1.4-.5-2.9-.3-6.1-.5-7.1-.2-.6-1.2-.1-2.2-.2-.9 0-1.8-.2-2.4-.5-.2 0-.5 0-.5.3Zm12.9-54c-14.5-2-15 35-14.1 42.6.3 2.3 3.2.3 4.6-1 .3-.3.5-.8.5-1.4.3-12 2.3-34.6 8.1-34.6 6.6 0-3.5 28.8-6.6 34.4-.2.3-.2.7.2 1 .8.5 2.2 1.6 2.9 2.6.1.1.3.1.4 0 8.3-13.9 16.6-41.8 4-43.5Zm-34.5 75.4c.8-1 .8-3.7.5-5.4 0-.4.1-.7.4-.9 7.3-3.5 14.7-14 16.6-17.8l.3-.2c.8 0 2.2.1 2.2.8 1.6 13.4-21.2 24.8-20 23.5Zm-1.4 4c-.5 1.5-4.8 2.2-5 2.4 0 .3 0 3 .5 3.2.6.2 1.2-1.5 1.6-1.5.4-.1.8.8 1.2.8.3 0 .5-1.4.9-1.5.4 0 1 .8 1.4.7.3-.1-.1-5.6-.6-4.1ZM44.7 119c.9-.6 4.2 1 5.6 1.9-.3 3.8 2.1 15.8 6.2 18.5.2.2.2.4 0 .7-1.4 2.2.4 6.5-.2 7.7-.2.3-.6.1-1-.1-11.2-9.4-11.5-27.9-10.6-28.7Zm-4.7-11c.3-.1.4-1.8.9-1.8l.9 1 .5.5c.8.4 1.5 1 1.4 1.2l-2.5 1.8c-1 1-1.4 2-1.6 2-.4 0-2.9-1.7-2.9-2.1 0-.5 1.5-.5 1.8-.7.3-.3-.3-1.5 0-1.8.3-.3 1.3.2 1.5 0Zm23.2-20.9c-.8-.7-1.6-2-2.2-3-.1-.1-.3-.2-.5-.1-7.2 4.3-12.6 16.4-14.3 22.7 0 .2.2.3.3.2 1.4-.8 3.8-.8 5.2-.5.2 0 .4-.2.4-.4 1.9-7 5.7-13.3 11.1-18 .2-.2.2-.7 0-.9Zm198.7-17.5c0 .2 3.2-4.2 5.2-4.6-2-8.1 26-9 28.9 1.8.2.6.4-1.5.7-1.6.3-.1 1.6.3 1.7.1.1 0-.2-1.3 0-1.4h1.4s.2-.1.2-.3c0-2-5.6-9.8-20.3-9.8-21.7 0-17.5 13.6-17.8 15.8Z"/><path d="M248.4 41.1c-.5 0-1.4.9-1.6 1.4-6 17.3-2.7 25.3 4.7 25.6 7.4.2 18.5-20.2 18.7-21 .2-.7.6-4.4-.3-3.9-.7.5-2.3.4-3.4.3-.4 0-.8.2-1 .6-3.1 7-11.4 19-14 18.2-5.7-1.5 1.6-20.7.8-20.4-1.3.4-3.3-.8-4-.8Zm-121.9 67.3c-.5 0-1.5.8-1.6 1.4-4.5 16.6-.1 25.4 7.3 25.7 6.4.3 15.6-21.2 15.9-21.9.2-.7 0-4.5-.8-4-.7.4-1.8.6-2.7.6-.5 0-1 .4-1 .8-3 9.4-8.9 19-12.6 18.1-5.1-1.1-1.6-15.5-.4-19.2.1-.3-.3-.8-.6-.8-1.3 0-3-.7-3.5-.7Zm123.2-70.6c.5-.9 2.8-3.1 4.3-2.7 1.6.5 3.3 6.4-.5 6.2-6-.3-4.3-2.7-3.8-3.5Zm-122.2 67c.5-.8 2.9-3 4.4-2.6 1.6.5 3.3 6.4-.6 6.2-6-.3-4.3-2.7-3.8-3.5Z"/><path d="M243.1 38.2c-.5-2.3 4-7.6 6-7.4 1.5 0 3 1.6 3 3 0 1-1.6 2.1-2.7 2.9-.4.3-.7.8-.7 1.3-.7 4.2-4.5 4.7-5.6.2Zm-122 67c-.7-2.3 4-7.6 5.9-7.3 1.4 0 3 1.6 3 3-.1 1-1.6 2.1-2.7 2.8-.5.4-.7.9-.8 1.4-.8 4.2-4.4 4.7-5.5.2Z"/><path d="M242.7 36.6c0-1.2 1.7-3.4 2.6-4.6.2-.2 0-.4-.2-.4-25.5-1.7-26.1 54-.1 33.8v-.2c-.9-.3-1.9-2.4-2.1-3.8h-.2c-19.2 13.8-11.5-23.7-.3-24.5.2 0 .3-.2.3-.3Zm-122.6 67.7c0-1.1 1.3-3.4 2.2-4.6.1-.2 0-.4-.2-.4-25 .2-22 53.7 2.7 33.4v-.3c-.9-.3-1.9-2.4-2.2-4h-.1c-19 14.5-14.7-23-2.7-23.8l.3-.3Z"/><path d="M207.4 44.6c.2-1.7-.5-4.3-1.4-5.4 1.6-2.1 5.6-6 8.8-5.7 3.2.4 11 1.8 4 27.6-.2.2-1 6 6 1.2.7 1 2.1 3.4 2.1 4.1-24.5 14.6-5.4-23.7-12.1-27-1.3-.6-5 3-7 5.4-.1.1-.4 0-.4-.2Zm-1.6 6c-.4.6-3.4.6-4.9.5-1 6-3 17.7-2.4 17.9.7 0 1.2-1.1 1.5-1 .3 0 .8 1 1.2 1 .4 0 .9-.8 1-.7.3 0 1.4 1.7 1.4 1.1 0-2.2 2.8-19.5 2.2-18.8Z"/><path d="M205.8 47c-.7 0-4-1.6-4.6-3-1.7-3.7.5-5 3.4-4.5s2.2 7.6 1.2 7.6Z"/><path d="M192.4 42.5c0-.8-1-.8-1.7-.8-.2 0-.4-.2-.3-.4 1.1-3.7 4.1-8.1 8.3-8.1 3.3 0 5.5 3 6 4.9.1.2 0 .4-.2.4-3.4 0-4.3 1.5-4.7 1-2.6-3.6-7.3 4.3-7.4 3Z"/><path d="M191.8 43.2c0-.7-.7-1-1.2-1-.2 0-1.1.9-2.1 1.4-.8.5-1.8.5-1.8.8 0 13.8-3.3 23.6-2.9 23.7.4.1 1.3-.5 1.5-.4.3 0 .8.9 1.1 1 .4 0 .9-1 1-1 .3 0 1 1.5 1.4 1.2.3-.2 3-25 3-25.7Zm-5.4-6.3c1-.7 2.6-1 3.7-1.2.4 0 .8-.3.9-.8.2-2-.5-3.7-2.4-4-2.1-.3-4.5 2.5-4.7 3.1-.3.7 1.1 4.2 2.5 3Zm4.6-.7c-3.8 0-6 3.6-6.1 4.6-.1 1 1.1 3 2.1 2.6 2.9-.6 4.5-5.5 4-7.2Zm-11 .7c.2-.3-.9-1.1-.7-1.5.2-.3 5.3 1.3 5.5 2.5.3 1.2-1.3 2.5-.4 3.8.6.8-7-1-7-1.7s1.9-.2 1.9-.7c0-.5-1-1-1-1.5.1-.4 1.5-.4 1.8-.9Z"/><path d="M168.2 31.7a9 9 0 0 1-5 0c-1.8 13.4-7 40 8 43C182.6 77 187 54.1 185.5 44c0-.3-.2-.3-.3 0-4.1 18.6-10.5 25.8-13.3 25.3-8.9-1.6-4.8-25.5-3.6-37.5Zm-31.5-20.5c5.3 0 19 4.6 25.9 7.9.3.1.2.6-.1.6-2.6.9-2.6 4-3 3.9-5.3-4.3-24-6.4-24-7.1 0-.7 1.4-1 1.4-1.5s-.9-.7-.7-1.2c0-.5 1-.1 1-.6s-1.7-2-.5-2Zm35 16.3c-.7-.1 1.6-3.4 2-5.4 0-.1 0-.2.3-.2a24.5 24.5 0 0 0 17.8-6.8c.7-.2-.1 1.5.2 1.7.2.3 1.4-.2 1.7 0 0 .3-.8 1.5-.5 1.7.2.2 2 .1 2.4.3v.2c-2.7 4.6-16.3 8.8-24 8.5Zm-1-9.2c-1.3-1-4.1.4-4.4.2-.3-.3 3.6-15.3 3.6-18.3 0-.8 1.2 1.4 1.6 1.4.3 0 1-1.2 1.3-1.2.2 0 .7 1.4.9 1.4.3 0 1.9-1.3 1.8-.9-1 6.7-3.6 18.5-4.9 17.4Z"/><path d="M166.8 24.3c.9-.2.5-3 .2-4.8 0-.3.1-.7.5-.8 3-.9 4.8 1.3 5 2 .4 2-2.6 8.1-3.4 7.8-2.8-.8-3.2-4-2.3-4.2Z"/><path d="M168.4 28.8c-2.4-.4-2.9-2.5-2.9-3.5 0-.2 0-.3-.2-.4-1.3-.3-3.8.7-4.1 1-.3.3 1 4.3 2.4 4.8 3 1 6.2-1.6 4.8-1.9Zm-27.4 46c2.4-1.2 2.5-4 2.4-5 5.7-1.7 2.2-9.5 3-10.2.8-.7 3.7-.9 5-1 .2 1.2.2 4.4.3 9v.3c0 2.5-7.4 8-10.7 7.2-.2 0-.2-.2 0-.4Zm8.8 66.4c3.4-1 3.1-3.3 3.1-4.5 6-1.1 3-9 4-9.7.9-.6 3.7-.5 5-.4 0 1.1.1 4.2-.3 9-.2 2.6-9 7.4-11.8 5.6Zm34.6-1.3c1.1-2.4-.3-4.1-.4-5.3 4.3-2 1.8-9 2.7-9.7.7-.7 3-1 4.4-1.2.1 1.2.2 5.4-.6 10-.4 2.7-3 4.8-6 6.2Zm87.1-65.5c2-2.4 1.1-3.3 1.1-4.5 5.9-1.3 3.7-9 4.6-9.7.6-.4 2.6-.6 4.1-.6.5 0 1 .4 1 1a71 71 0 0 1-1 7.8c-.5 2.8-6.9 7.7-9.8 6Z"/><path d="M133.1 70.2c.6-1.6 2.8-3.9 4-4.7.3 0 .3-.3.2-.5-3.9-8.5 14.6-4.5 22-10.2.6-.4 1-1.2 1-1.9 0-1.5-.1-3.7-.8-4-.8-.4-9.7 5.7-15.3 5.5-13.1-.3-14 9.6-11.4 15.9l.3-.1Z"/><path d="M133.1 70.2c.6-1.6 2.8-3.9 4-4.7.3 0 .3-.3.2-.5-3.9-8.5 14.6-4.5 22-10.2.6-.4 1-1.2 1-1.9 0-1.5-.1-3.7-.8-4-.8-.4-9.7 5.7-15.3 5.5-13.1-.3-14 9.6-11.4 15.9l.3-.1Zm39.9 64c.5-1.3 2.5-2.4 3.6-3 .2 0 .2-.2.1-.4-2.2-5.5 6.4-5.3 17.2-10.3.9-.4 1.5-1.2 1.7-2.1.2-1.9.6-4.7 0-5-.9-.5-5.8 5.2-11.2 6.2-14.2 2.4-13.3 11-11.8 14.8 0 .1.3.1.4-.1Zm-35.3-59.1c-1.9.4-3.7-1.7-4.4-1.7-.8 0-3 3.5-3 3.6.3.3 2.2-.2 2.3 0 .2 0-.8 1.6-.5 1.7.2.3 1.9-.3 2 0 .3.1-.3 1.3.1 1.3 1.3-.2 5.5-5.3 3.5-5Zm9.6 66.5c-2 .3-3.7-1.7-4.4-1.7-.8 0-3.1 3.4-3 3.7.2.1 2.2-.3 2.3-.2.2.2-.8 1.6-.5 1.9.2.1 1.9-.4 2.1-.2.2.2-.3 1.4 0 1.3 1.3-.2 5.5-5.2 3.5-4.8Zm31-.7c-2 .3-3.8-1.7-4.5-1.7-.8 0-3 3.4-2.9 3.7.2 0 2.1-.3 2.3-.2.1.2-.9 1.6-.6 1.8.2.2 2-.3 2.1 0 .3.1-.3 1.3.1 1.2 1.2-.2 5.4-5.3 3.5-4.8ZM267 75c-2 .4-3.7-1.6-4.5-1.6-.7 0-3 3.4-2.9 3.6.2.1 2.2-.3 2.3-.2.1.2-.8 1.7-.6 1.9.3.1 2-.4 2.2-.2.2.2-.4 1.4 0 1.3 1.2-.1 5.4-5.2 3.5-4.8Z"/><path d="M139.2 73.9a7 7 0 0 0-2.3-6c-.6-.7.6-1.9 2-1.9 1.6 0 3.6 4.1 3.6 5.4 0 1.8-3.4 3.4-3.3 2.5Zm9.6 66.5c.2-3.1-1.1-4.7-2.2-6-.7-.7.5-2 2-1.9 1.4 0 3.5 4.1 3.5 5.3 0 1.9-3.4 3.5-3.3 2.6Zm31.1.9c.5-3-.8-6.4-1.8-7.8-.6-.8.5-2 2-1.8 1.5.2 4.1 5.7 3.5 7.6-.8 2.4-3.9 3-3.7 2Zm88.5-67.5c.2-3.1-1-4.7-2.2-6-.6-.7.5-2 2-1.9 1.5 0 3.5 4.1 3.5 5.3 0 1.9-3.3 3.5-3.3 2.6Zm-130-31.1c.4-.9 2.8-1.3 4.3-1.6.3 0 .5.3.4.6-.9 3.8 6 8 5.2 10.8-.2 1-3 1.1-4.3.7-1.2-.3-6.2-9.5-5.6-10.5Zm10.4 65.7c.5-.9 2.9-1.3 4.4-1.6.2 0 .4.2.4.5-.5 4 6 8.7 5.2 11.5-.3 1-3.1 1.1-4.3.7-1.2-.4-6.3-10-5.7-11.1Zm29.4.1c0-1 2.6-3.2 4.1-4 .2 0 .5.2.4.4-.5 4 6 9 5.2 11.8-.3.9-3.7 1.6-4.6 1-1-.5-5.2-8-5-9.2Zm93.3-66.4c.5-.8 3-1 4.4-1 .3 0 .5.2.5.5-1.3 3.8 5 8.6 4 11.4-.5.8-3.3.7-4.5.2-1.1-.5-5.1-10.1-4.4-11.1Zm-132-15c-1 0-4.5 1-5 1.6-.5.7 1.2 4.3 2 3.8 3.5-1.7 5 1.2 5.7-.7.3-.8-.5-4.6-2.7-4.7Zm10.7 65.5c-1 0-4.5 1-5 1.6-.5.7 1.2 4.4 2 3.9 3.5-1.8 5 1 5.7-.8.3-.8-.5-4.5-2.7-4.7Zm-12-51.4c-.7-.2-.4-3.3.4-3.8.5-.3 1.2-.2 1.8-.4.5-.1.8-.5 1.5-.7 1.8-.5 2 2.6 1.5 3.5-.4.5-3 .9-3.8 1-.9 0-1.2.5-1.5.4Zm10.7 65.6c-.6-.3-.4-3.4.4-4 .5-.2 1.2 0 1.9-.3.4-.1.7-.5 1.5-.7 1.8-.5 2 2.6 1.4 3.5-.4.5-3 .9-3.9 1-.7 0-1 .5-1.3.5Z"/><path d="M142 35.3c-.2.4-2.3 1.6-3 1-.2-.2 0-1-.6-1.5-.5-.5-1.3-.7-1.5-1.1-.3-1 3.5-1 4.4-.7.9.3.9 1.9.7 2.3Zm10.7 65.5c-.2.4-2.3 1.6-2.9 1-.3-.2-.2-1-.7-1.5-.5-.5-1.3-.7-1.4-1.1-.4-1 3.4-1 4.3-.7.9.3 1 1.9.7 2.3ZM138 36.2c0-1-2.1-2.9-3.5-3.2-1.3-.4-1.7 3-1.7 4.5 0 .4.4 1.3 2 1.4 2 .2 3.3-1.8 3.2-2.7Zm10.8 65.5c-.1-1-2.2-2.9-3.6-3.2-1.3-.4-1.7 3-1.7 4.5 0 .4.4 1.3 2 1.4 2 .2 3.3-1.7 3.3-2.7Zm-28.1-61.4c-.4-2.6-2.8-4.6-4.4-5.4-.2 0-.5 0-.5.3-.1 13.8-7.1 35.4 4.9 35.4 7.7 0 16.7-21 16.9-22.3.2-1.3.2-3.8-.3-4.2-.5-.4-4 0-4.2.6-2.3 8.8-10 20.8-13 20.5-3-.3 1-22 .6-25Z"/><path d="M125.3 33c-2.7 0-4.2-3-4.9-3.4-.7-.5-4.6.3-4.6 2.2.1 2.4 5.5 5.8 6.7 5.8 2.3 0 3.6-4.6 2.8-4.6Zm84.6 59.8c-2.7 0-4.2-3-4.8-3.4-.8-.5-4.7.3-4.7 2.2.1 2.4 5.5 5.8 6.7 5.8 2.3 0 3.6-4.6 2.8-4.6Z"/><path d="M124.3 31.8c-1.1 0-2-.9-2.5-1.9-.4-1 .3-2 .3-3.2.1-1.2-.8-1.8.3-2.6 1-.7 5.1.4 5 3 0 2.7-2 4.7-3.1 4.7Zm84.6 59.8c-1 0-2-1-2.5-2-.4-1 .3-2 .3-3.1.1-1.2-.8-1.9.3-2.6 1-.8 5.1.3 5 3 0 2.6-2 4.7-3.1 4.7Zm-94.4-66c.7-.6 6.2-1 6.6-.3.4.5.1 3-.2 3.4-.4.3-2.7-.2-3.8.4-1 .5-1.3 1.7-2.1 1.7s-1-1.5-1.1-2.4c-.1-1-.2-2 .6-2.7ZM199 85.5c.7-.6 6.2-1 6.6-.4.4.6.1 3-.2 3.4-.4.3-2.7-.1-3.8.5-1 .5-1.3 1.6-2.1 1.6s-1-1.4-1.1-2.4c-.1-1-.2-2 .6-2.7Zm-83-61.3c-.7-.1-1.2-2.1-1.3-3.4 0-.3.1-.3.3-.3.5.3 1 .5 1.3.4.6-.1.8-1 1-1 .3 0 .7.8 1.3.8.5 0 1.1-1.4 1.4-1.2l.5 2.2c.1.5.9.7.5 2.4-.2.8-4.2.3-5 .1ZM200.6 84c-.7-.1-1.2-2.1-1.3-3.5 0-.2.1-.3.3-.2.5.2 1 .5 1.3.4.6-.2.8-1 1-1 .3-.1.7.7 1.3.7.5 0 1.1-1.3 1.4-1.1l.5 2.2c.1.5 1 .7.5 2.4-.2.7-4.2.3-5 .1ZM98.5 42c-.6-.8.3-3.8.2-5.1 8.6 1.5 10.5 4.8 9.5 7.6-7.2 19.3-2.2 20.7 0 20.8 2.2 0 4.7-2 4.9-1.5-.7 3 1.6 4.3.7 4.9-12.5 7.2-14.2-5.3-14.5-9.6-.1-3.3 3-10 3.6-15.2 0-1.5-4.2-1.7-4.4-1.9Zm-.6-5c-.1 1.7-.6 3.8-1 4.5-1 .3-3.7-2-3.9-3-.4-3.8.5-4.7 2-4.7 1.4 0 3 .9 2.9 3.1Z"/><path d="M96.8 42.3c-3.8-1-4-3.3-5-4-1-.7-3.5-.6-3.7 3-.2 3.8 2.3 4.3 4.2 4.3 5 .1 5.4-3 4.5-3.3Z"/><path d="M92.1 37.4c.5-.3-.3-2.9 1.1-3.8.2 0 .3-.2.1-.3-.8-.5-3-1-4.2-1-1.3 0-3.2 1.9-3.3 4 0 1.5.7 2.6 1.2 3.2.2.2.4.1.6-.2 1.2-2.4 4-1.5 4.5-1.9Zm44.3 2c.8.2 1.3 1.4.5 3-.3 1-.8.8-1.9.8-1 .2-2 .5-2.3.1-.8-.8-1-4.9.6-3.8 1.4 1 2.4 0 3.1 0Zm10.8 65.6c.8.1 1.2 1.4.5 3-.4.9-.9.7-2 .7-1 .2-1.9.5-2.2.1-.8-.8-1-4.9.5-3.8 1.4 1 2.4 0 3.2 0Zm127-78.8c-1.1 0-4.6 1-5 1.7-.6.7 1 4.3 2 3.8 3.4-1.8 4.9 1.1 5.6-.8.3-.8-.4-4.5-2.6-4.7Zm-2 14.8c-.6-.3-.3-3.4.5-3.9.5-.2 1.2-.2 1.8-.3.5-.1.8-.5 1.5-.7 1.8-.6 2 2.6 1.5 3.5-.4.5-3 .9-3.8 1-.9 0-1.2.4-1.5.4Z"/><path d="M276.4 34.7c-.2.4-2.7 2-3.2 1.5-.3-.3.2-1.5-.3-2-.5-.6-1.2-.9-1.4-1.3-.4-1 3.4-1 4.3-.7.8.3.8 2 .6 2.5Zm-4.4.8c-.1-1.1-2.3-3-3.7-3.5-1.4-.4-1.9 3.3-1.9 5 0 .4.5 1.3 2 1.5 2.2.2 3.6-2 3.6-3ZM270 39c.8.1 1.2 1.3.5 3-.4.9-.8.7-1.9.7-1 .2-2 .5-2.3.1-.8-.8-1-4.9.5-3.8 1.5 1 2.4 0 3.2 0ZM63.8 48.3c.1-.5-2.2-2.8-3.4-3.9 12.6-12.8 18.1-5.3 19.3 2.7 1 8-1.7 17.9.9 18.6 4.2 1 7.7-12.6 9.1-19.4 0-.2.2-.3.3-.3.6 0 1.1.3 2.1.3 1.2 0 2.8-.2 2.8.2-1.9 18.7-11 25.2-14.8 25-11.4-.7-2-27.7-8.5-28.2-2.6-.1-8 5.5-7.8 5Z"/><path d="M54 48c.4 0 2.8-1.7 4.1-2.7l.3-.6c-1-21.4 2.8-37 6-37 3.3 0 2 13.1 1 17.5s-6.6 20.3-5 18.1c1.5-2.2 5.2-4.4 6.9-5.3C71.5 25.9 76.5 1.8 64 2 49.6 2.2 53.3 47.9 54 48Zm6.6 10c-.3-.6-4.7-1.3-5-1-.2.1-.8 16.2-.6 16.3.2.1 1-1.2 1.3-1.2.3 0 .8 1 1.1 1 .3 0 .8-.9 1.2-.8.3 0 1.4 1.1 1.6 1 .2-.1.8-14.7.4-15.4Zm2.6-5.6c-.6.6-4.2.9-5.2.5s-3.3 1.4-2.8 2.6c.7 1.5 5 1 7 .8 1.9-.2 1.6-4.8 1-4Zm-5-1.7c.4-1.5-1-2.7-2-2.7s-4.4 2.9-4.4 4.1c0 1.3 1.4 2.7 2.2 2.7.4 0 .9-1.3 1.7-2.2.9-.8 2.3-1.2 2.4-2Zm-54 9C4 58 5.2 56 6.2 55c.1-.1 0-.3-.1-.4-1.6-.4-5.5-.5-5.6-.2 0 .4 1.1 1.1 1 1.5 0 .4-1.4.8-1.4 1.1 0 .3 1.1.7 1.1 1.3 0 .4-.6.7-1 1-.2 0-.3.2 0 .3 1.6.7 4 .8 4 .1Zm7.2 1.3c0-.9.8-1.7 1.6-2.3.2-.3.7-.5 1-.4 2.8.5 4-1 4.9 0 1.1 1-.1 4.7-1.8 4.8-1.7 0-5.6-1-5.7-2.1Zm34.5 56c0-.8.8-1.7 1.5-2.3.3-.3.7-.4 1.1-.4 2.8.5 3.9-.9 4.9 0 1.1 1-.2 4.8-1.9 4.8-1.6 0-5.5-1-5.6-2Zm-32-60.5c.2-1.5-1.3-2.5-2.3-3.3-.1 0 0-.3 0-.4 5.7-3.2 6.7 1 6.7 3V57c-.2.3-.5.4-.9.4-1.5.1-3.7.4-3.5-1Zm34.4 55.9c.1-1.6-1.3-2.6-2.3-3.3-.1-.1-.1-.4 0-.4 5.7-3.2 6.7 1 6.7 3v1.1c-.2.4-.6.5-1 .5-1.4.1-3.6.4-3.4-1Zm-18.7-92c-.9.1-2.4-2.5-3.2-4.1 0-.2-.3-.3-.5-.2-4.4 2.7-17.7 12.1-16.3 36.3 0 .2.2.3.4.2 1.7-1.7 5.2-2 5-2.5-1.4-21.3 15.7-30 14.6-29.7ZM38 9c-1.1-1.6-5.4 1-5.1-.4.3-2.2.3-2.4.7-2.7.3-.2.5-.6.6-1 .1-.7.1-1.3.4-1.3 1 0 .7 1.7 1.2 1.7s.9-.8 1.4-.8c.6 0 .8 1.4 1.1 1.5l1.8-.8c.2-.1.3 0 .3.2C40.1 7.3 39 10.2 38 9Zm33.4 66.3c-.6-.5-4.8 1.5-5.1.7 0 0 1.3-5.7 1.7-5.8.9-.2.6 1.8 1.1 1.8.6-.1.9-1.1 1.4-1.2.6 0 .6 1.5.9 1.5.2 0 1.2-.6 1.7-1 .1-.1.3 0 .3.2 0 1.9-.8 4.7-2 3.8ZM257.7 33c-1 1-1.7 1.5-3 1.5-2.1 0-1.7-1.3-2.4-2.4-.6-1.1-1.4-1.6-1.3-2 0 0 3.5-2 3.8-1.7.7.5.4 1.1.7 1.4.5.4.8.2 1.3.5.4.4-.2 1.2 0 1.4 0 .2.4.3.7.5.4.1.4.5.2.8Zm-124 66.7c-1 1-1.2 1.4-2.4 1.5-.6 0-.2-.9-.8-2-.6-1.2-2.2-2-2-2.3 0 0 2.4-1.7 2.7-1.4.6.6-.1 1 .2 1.3.4.4 1 0 1.5.4.4.3-.1 1 0 1.3l.5.4c.3.1.4.6.2.8ZM29.4 18.6a5.3 5.3 0 0 1 3.5-4c0-.5 0-2-.3-3.1-.2-.9-.8-2-1.6-1.5-.4.1-.7.5-1.4.4-1.7 0-2.9 1.5-3 3.4-.2 2 2.5 5.7 2.8 4.8Zm34 66.7a5.3 5.3 0 0 1 3.6-4c0-.5 0-2-.3-3.1-.2-.9-.8-2-1.6-1.5-.3.1-.7.5-1.4.4-1.6 0-2.8 1.5-3 3.4-.2 2 2.5 5.7 2.8 4.8Z"/><path d="M30.6 18.8c0-1.3.6-2.3 2.6-2.7 2-.3 5.2.9 5.2 2.8S37 22.3 35.1 22c-1.8-.1-4.6-2-4.5-3.3Zm34.1 66.7c0-1.3.2-2.4 2.1-2.7 1.3-.2 4-.2 5.2.7.6.4.6 1.5.6 2.1 0 2-1.6 3.4-3.4 3.3-1.7-.2-4.6-2-4.5-3.4ZM38.4 10.8c.1-1.5-3.4-1.8-4.7-1-.4.3-.4.7-.3 1.2.7 3.4 1 4.8 3.8 5 .3 0 .5 0 .8-.2.7-.7 0-2.1.4-5Zm34.1 66.7c.1-1.5-3.3-1.8-4.7-1-.3.3-.3.8-.3 1.2.7 3.4 1.1 4.9 3.9 5 .2 0 .5 0 .7-.2.7-.7.1-2.1.4-5Z"/><path d="M32.3 42.2c0-.5-2-1-1.6-1.6 18.2-1.3 16.9-19.8 8.5-23.4V17l.2-2.3-.2-2.8v-.1C59.1 19.2 49.4 46.6 32 46c-.3-.2.9-1.5.9-1.5s-1.6-.7-1.6-1c0 0 1-1 1-1.4Zm36.7 66c0-.6-2-1.2-1.7-1.7 14.8-1.9 16.2-21.5 6-23H73l.6-2.1-.2-2.9c20.7 4.6 10.5 32-4.6 33.4-.3-.1.8-1.4.8-1.4s-1.9-.8-1.9-1c0-.1 1.2-1 1.2-1.4ZM5.2 59c.2-3 4.3-5.5 5.3-5.5 1 .1 2.5 1.2 2.5 3 0 .7-.8 2-1.7 3-.3.2-.4.5-.5.7-.5 1.2-1.4 2.2-2 2.3-1.4.4-3.7-.5-3.6-3.5ZM39.8 115c.1-3 4.2-5.5 5.3-5.5 1 .1 2.5 1.2 2.5 3 0 .7-.8 1.8-1.8 3l-.5.7c-.6 1.2-1.4 2.2-2 2.3-1.3.4-3.7-.6-3.5-3.5ZM16.4 64.7c-.5-1.8-4.4-1.6-6.3-1.4-.3 0-.4.2-.3.4 11.2 34.5 39.4 15.8 44-1.3.2-.5 1-4.1.6-6.2 0-.4-.5-.7-1-.9l-.6-.3c-.5-.4-1-.6-1.1-.4C31 98.5 16.9 67.2 16.4 64.7Zm42.9-14.4c0-1-1.2-2.2-1.7-3-.2-.2-.2-.3-.1-.5.3-.6 1.5-1.5 2.3-1.5 1 0 4.7 4.6 3 6.2-1.1 1.2-3.4 1-4.5.6v-.5c.5-.2 1-.7 1-1.3ZM134 72.2c-.3-1.9 1.1-3.5 2-4.3h.3a15 15 0 0 1 2.2 5c0 1.2-.6 1.2-1.5 1.4-1 0-2.7 0-3-2.1Zm9.5 66.5c-.3-1.9 1.2-3.6 2-4.3l.4.1c.8 1.3 2 3.8 2.2 4.9 0 1.2-.7 1.3-1.5 1.3-1 .2-2.7 0-3-2Zm29.9-2c-.3-1.4 1.1-2.8 2.2-3.7.5-.3 1.2-.2 1.5.3.9 1.7 2 4.7 2 5.7.1 1.2-.3 1.2-1.2 1.2-.9.2-4.1-1.5-4.5-3.4Zm89.8-64.6c-.3-1.8 1.1-3.5 2-4.2 0-.2.2-.1.3 0 .9 1.3 2.1 3.8 2.2 4.9 0 1.2-.6 1.3-1.5 1.3-.9.2-2.7 0-3-2Zm-102-47c.7-.3 3-1 4.4-1.3.4-.2.6-.3.7-.7.4-1.4 0-3.6-.7-3.6-4.8 0-5.4 6.3-4.4 5.7Zm45 23c-1.1 0-4.3-2.6-5-2.6-.7 0-2.4 2.1-1.9 3.8.5 1.7 4.4 1.4 5.3 1 1-.3 2.7-2.3 1.6-2.2ZM62 145.3c.3 0 .6-4 0-4.4-6.3-4.5-5.1 7.8-3.9 5.8 1-1.5 3.6-1.2 3.9-1.4Zm1.3.7c-.3-.3-.6-4.2 0-4.4 7.1-1.6 3 7 2.9 7.1-.2 0-2.6-2.2-3-2.7Z"/><path d="M58.4 148.2c0-1.2 2-2 3-2 .8 0 4.2 2.7 4.4 3.7 0 .8-2.5 2.9-4.2 2.8-1.6 0-3.3-3.3-3.2-4.5ZM177.8 107c-.9 0-1.5-2.4-1.8-4 0-.1-.3-.2-.5 0-1 .9-3 1-3.3 1.2-.4.2.2 3.5 1.6 4.3 1.5.8 5.1-1.4 4-1.5Zm-7-6.7c.1-2 1.3-3 2.2-3.4 3.2-1 5.2 3 4.6 3.7-1 1.2-2 .9-2.9 1.4-3 2.8-4 1.3-3.8-1.7Z"/><path d="M182.6 103.7c-1.7-.3-3 1.3-3.8 2.4-.2.2-.5.2-.6 0-2.6-5 1.9-7 3-7 1.3 0 2.6 4.7 1.4 4.6Zm-3.5-12.1c2-.1 2.5 3.6 2.4 6-.1.6-.6 1.1-1.2 1.1-2.6-.1-2.2-1.3-3.1-2-1.7-1.1-3.2.4-3-2.4.1-.4 1.8-2.5 4.9-2.7Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h300v157H0z"/></clipPath></defs></svg>
+</a>
+    </div>
+
+    <nav class="main-nav">
+        <a href="#" class="nav-link" onclick="switchTab('about'); return false;">About</a>
+        <a href="#" class="nav-link" onclick="switchTab('schedule'); return false;">Schedule</a>
+        <a href="#" class="nav-link" onclick="switchTab('venue'); return false;">Venue</a>
+    </nav>
+</header>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="view-section">
+    
+    <p style="margin-bottom: 3rem; font-size: 16px; line-height: 2;">
+        The Christmas Classic is a basketball tournament for members of the Charlottesville community. The inaugural event will be held Saturday, December 20th, 2025 at the UVA Aquatic and Fitness Center (680 Alderman Rd, Charlottesville, VA 22903). 
+
+The questions below outline specifics for players and attendees. 
+    </p>
+
+    <div class="qa-block">
+    <div class="qa-question">What is the format?</div>
+    <div class="qa-answer">
+        We expect 8 teams of 4 or more players. Each game will be full court and 4-on-4. Teams will play two preliminary games for seeding in a single-elimination afternoon playoff culminating in a championship game. Teams will play a minimum of three games and a maximum of five games total.
+    </div>
+</div>
+
+<div class="qa-block">
+    <div class="qa-question">What are the specific rules for the games?</div>
+    <div class="qa-answer">Games follow standard basketball rules, slightly modified for tournament play, including shortened 10 min halves and a running clock. Detailed rules will be given immediately prior to the event.</div>
+</div>
+
+<div class="qa-block">
+    <div class="qa-question">Are there awards for winning teams and players?</div>
+    <div class="qa-answer">Yes, the winning team will be awarded (trophy and custom tee shirts) as well as a couple of individual player awards.</div>
+</div>
+
+<div class="qa-block">
+    <div class="qa-question">Will there be referees?</div>
+    <div class="qa-answer">Yes, each game will have referees.</div>
+</div>
+
+<div class="qa-block">
+    <div class="qa-question">Is there parking available at the venue?</div>
+    <div class="qa-answer">Limited paid parking is available on-site, but ideally teams can carpool or be dropped off.</div>
+</div>
+
+<div class="qa-block">
+    <div class="qa-question">What time should players arrive?</div>
+    <div class="qa-answer">Players should arrive at 12pm for registration, warm-up, and gear distribution.</div>
+</div>
+
+<div class="qa-block">
+    <div class="qa-question">What time will the event end?</div>
+    <div class="qa-answer">The championship game will end around 4:00 pm.</div>
+</div>
+
+<div class="qa-block">
+    <div class="qa-question">What food will be provided?</div>
+    <div class="qa-answer">No food or drink other than water will be provided at this time.</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- SCHEDULE SECTION -->
+<section id="schedule" class="view-section">
+    
+    <!-- Warm Up -->
+    <div class="schedule-block" style="border-style: dashed;">
+        <div class="time-header">12:00 – 12:25</div>
+        <div style="text-align: left; font-weight: 700;">REGISTRATION, WARM-UP & GEAR DISTRIBUTION</div>
+    </div>
+
+    <!-- Slot 1 -->
+    <div class="schedule-block">
+        <div class="time-header">12:25 – 12:50</div>
+        <div class="game-row">
+            <div class="match-container">
+                <span class="court-tag">COURT 2</span>
+                <div class="teams">Team 1 vs Team 2</div>
+            </div>
+            <div class="match-container">
+                <span class="court-tag">COURT 3</span>
+                <div class="teams">Team 3 vs Team 4</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slot 2 -->
+    <div class="schedule-block">
+        <div class="time-header">12:50 – 1:15</div>
+        <div class="game-row">
+            <div class="match-container">
+                <span class="court-tag">COURT 2</span>
+                <div class="teams">Team 5 vs Team 6</div>
+            </div>
+            <div class="match-container">
+                <span class="court-tag">COURT 3</span>
+                <div class="teams">Team 7 vs Team 8</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slot 3 -->
+    <div class="schedule-block">
+        <div class="time-header">1:15 – 1:40</div>
+        <div class="game-row">
+            <div class="match-container">
+                <span class="court-tag">COURT 2</span>
+                <div class="teams">Team 1 vs Team 3</div>
+            </div>
+            <div class="match-container">
+                <span class="court-tag">COURT 3</span>
+                <div class="teams">Team 2 vs Team 4</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slot 4 -->
+    <div class="schedule-block">
+        <div class="time-header">1:40 – 2:05</div>
+        <div class="game-row">
+            <div class="match-container">
+                <span class="court-tag">COURT 2</span>
+                <div class="teams">Team 5 vs Team 7</div>
+            </div>
+            <div class="match-container">
+                <span class="court-tag">COURT 3</span>
+                <div class="teams">Team 6 vs Team 8</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Break -->
+    <div class="schedule-block" style="border-style: dashed;">
+        <div class="time-header">2:05 – 2:20</div>
+        <div style="text-align: left; font-weight: 700;">SEEDING BREAK</div>
+    </div>
+
+    <!-- BRACKET UI -->
+    <h2 style="text-align: center; margin-top: 3rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 900;">Championship Bracket</h2>
+    
+    <div class="bracket-wrapper">
+        
+        <!-- QF COLUMN -->
+        <div class="round-column round-1">
+            <div class="round-title">Quarterfinals</div>
+            
+            <div class="bracket-match">
+                <span class="seed">Court 2 | 2:20</span>
+                <span>Seed 1 v Seed 8</span>
+            </div>
+            <div class="bracket-match">
+                <span class="seed">Court 3 | 2:20</span>
+                <span>Seed 4 v Seed 5</span>
+            </div>
+            
+            <div style="height: 20px;"></div> <!-- Spacer -->
+
+            <div class="bracket-match">
+                <span class="seed">Court 2 | 2:45</span>
+                <span>Seed 2 v Seed 7</span>
+            </div>
+            <div class="bracket-match">
+                <span class="seed">Court 3 | 2:45</span>
+                <span>Seed 3 v Seed 6</span>
+            </div>
+        </div>
+
+        <!-- SF COLUMN -->
+        <div class="round-column round-2">
+            <div class="round-title">Semifinals</div>
+            
+            <div class="bracket-match">
+                <span class="seed">Court 2 | 3:10</span>
+                <span>Winner QF1/2</span>
+            </div>
+            
+            <div class="bracket-match">
+                <span class="seed">Court 3 | 3:10</span>
+                <span>Winner QF3/4</span>
+            </div>
+        </div>
+
+        <!-- FINAL COLUMN -->
+        <div class="round-column round-3">
+            <div class="round-title">Finals</div>
+            
+            <div class="bracket-match winner-box">
+                <span class="seed">Court 2 | 3:35</span>
+                <span>CHAMPIONSHIP</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- VENUE SECTION -->
+<section id="venue" class="view-section">
+    <p>UVA Aquatic & Fitness Center<br>680 Alderman Road<br>Charlottesville, VA 22903</p>
+    
+    <!-- Embedded Google Map -->
+    <div class="map-frame">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3142.477827154768!2d-78.51078702407288!3d38.03608777192065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b3865bee9b21a7%3A0x796c215c8324cc20!2sAquatic%20%26%20Fitness%20Center!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+            width="100%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <p><a href="https://www.google.com/local/place/fid/0x89b3865bee9b21a7:0x796c215c8324cc20/photosphere?iu=https://lh3.googleusercontent.com/gps-cs-s/AG0ilSywkxGbX_11GtEsyZ3IzpB9FF1dReiE3lbv53sSqMxYYUnqd28C9pFaGM6wonuJsgoIp3mErDW_oKSSpUNhj06BspQYPUWDY79aUiyR0ln2Giy8eD3guqB60HROPEokchC6bSA0%3Dw160-h106-k-no-pi-10-ya180.91223-ro-0-fo100&ik=CAoSF0NJSE0wb2dLRUlDQWdJQzZ4TmU2X2dF" target="_blank">
+        Venue Walkthrough
+    </a></p>
+</section>
+
+<footer>
+© 2025 Pumpfake. All Rights Reserved.
+</footer>
+
+<script>
+    function switchTab(id) {
+        document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(link => {
+            if(link.getAttribute('onclick').includes(id)) {
+                link.classList.add('active');
+            }
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
